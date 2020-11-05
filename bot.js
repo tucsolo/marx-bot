@@ -21,9 +21,11 @@ bot.use(rateLimit({
 			next();
 		} else if (sinceLast < 10000) {
 			let msg = ctx.message.text || ctx.message.caption;
-			let nms = marxify(msg);
-			if (nms.localeCompare(msg) != 0)
-				ctx.reply('State sprecando il NOSTRO tempo, abbiamo anche altro da fare oltre che correggere messaggi.');
+			if (msg) {
+				let nms = marxify(msg);
+				if (nms.localeCompare(msg) != 0)
+					ctx.reply('State sprecando il NOSTRO tempo, abbiamo anche altro da fare oltre che correggere messaggi.');
+			}
 		}
 	}
 }));
@@ -32,13 +34,15 @@ bot.start((ctx) => ctx.reply('Mi fa piacere essere qui kompagni.'));
 
 bot.on(['message', 'video', 'photo'], (ctx) => {
 	let msg = ctx.message.text || ctx.message.caption;
-	try {
-		let simpsonref = msg.replace(/ /gi, '');
-		if (simpsonref.toLowerCase().includes('unionesovietica?manonsieradisciolta?')) ctx.reply('Si, è questo che volevamo farvi credere *preme bottone*');
-		let nms = marxify(msg);
-		if (nms.localeCompare(msg) != 0)
-			ctx.reply(nms + '*'); // Inviamo la NOSTRA correzzione
-	} catch (e) { console.log(e) }
+	if (msg) {
+		try {
+			let simpsonref = msg.replace(/ /gi, '');
+			if (simpsonref.toLowerCase().includes('unionesovietica?manonsieradisciolta?')) ctx.reply('Si, è questo che volevamo farvi credere *preme bottone*');
+			let nms = marxify(msg);
+			if (nms.localeCompare(msg) != 0)
+				ctx.reply(nms + '*'); // Inviamo la NOSTRA correzzione
+		} catch (e) { console.log(e) }
+	}
 });
 
 bot.launch();
