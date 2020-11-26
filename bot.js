@@ -1,4 +1,4 @@
-const Telegraf = require('telegraf');
+const { Telegraf, Extra } = require('telegraf');
 const rateLimit = require('telegraf-ratelimit');
 const bot = new Telegraf(process.env.token);
 const { marxify } = require('./communism');
@@ -38,12 +38,12 @@ bot.on(['message', 'video', 'photo'], (ctx) => {
 		try {
 			let simpsonref = msg.replace(/ /gi, '');
 			if (simpsonref.toLowerCase().includes('unionesovietica?manonsieradisciolta?')) ctx.reply('Si, è questo che volevamo farvi credere *preme bottone*');
-			if (simpsonref.toLowerCase().includes('femmin')) ctx.reply('Sembra che tu abbia utilizzato la parola con la F, non farlo in quanto può essere sessista.');
-			if (simpsonref.toLowerCase().includes('donna')) ctx.reply('Sembra che tu abbia utilizzato la parola con la D, non farlo in quanto può essere sessista.');
-			if (simpsonref.toLowerCase().includes('donne')) ctx.reply('Sembra che tu abbia utilizzato la parola con la D, non farlo in quanto può essere sessista.');
+			if (simpsonref.toLowerCase().includes('femmin')) ctx.replyWithMarkdown('Sembra che tu abbia utilizzato la parola con la F, non farlo in quanto può essere sessista.', Extra.inReplyTo(ctx.message.message_id));
+			if (simpsonref.toLowerCase().includes('donna')) ctx.reply('Sembra che tu abbia utilizzato la parola con la D, non farlo in quanto può essere sessista.', Extra.inReplyTo(ctx.message.message_id));
+			if (simpsonref.toLowerCase().includes('donne')) ctx.reply('Sembra che tu abbia utilizzato la parola con la D, non farlo in quanto può essere sessista.', Extra.inReplyTo(ctx.message.message_id));
 			let nms = marxify(msg);
 			if (nms.localeCompare(msg) != 0)
-				ctx.reply(nms + '*'); // Inviamo la NOSTRA correzzione
+				ctx.reply(nms + '*', Extra.inReplyTo(ctx.message.message_id)); // Inviamo la NOSTRA correzzione
 		} catch (e) { console.log(e) }
 	}
 });
