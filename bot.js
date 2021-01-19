@@ -39,16 +39,20 @@ bot.on(['message', 'video', 'photo'], (ctx) => {
 	if (msg) {
 		try {
 			let simpsonref = msg.replace(/ /gi, '');
-			if (simpsonref.toLowerCase().includes('unionesovietica?manonsieradisciolta?')) ctx.reply('Si, è questo che volevamo farvi credere *preme bottone*');
-			if (simpsonref.toLowerCase().includes('femmin')) ctx.replyWithMarkdown('Sembra che tu abbia utilizzato la parola con la F, non farlo in quanto può essere sessista.', Extra.inReplyTo(ctx.message.message_id));
-			if (simpsonref.toLowerCase().includes('donna') || simpsonref.toLowerCase().includes('donne')) ctx.reply('Sembra che tu abbia utilizzato la parola con la D, non farlo in quanto può essere sessista.', Extra.inReplyTo(ctx.message.message_id));
-			if (simpsonref.toLowerCase().includes('ragazza') || simpsonref.toLowerCase().includes('ragazze')) ctx.reply('Sembra che tu abbia utilizzato la parola con la R, non farlo in quanto può essere sessista.', Extra.inReplyTo(ctx.message.message_id));
-			if (simpsonref.toLowerCase().includes('negro') || simpsonref.toLowerCase().includes('nigg')) ctx.reply('Sembra che tu abbia utilizzato la parola con la N, non farlo in quanto può essere razzista.', Extra.inReplyTo(ctx.message.message_id));
-			if (simpsonref.toLowerCase().includes('@matteounitn')) ctx.reply('Sembra che tu abbia menzionato @matteounitn, bravo, fallo perchè si vede che qualcosa non va.', Extra.inReplyTo(ctx.message.message_id));
-			if (simpsonref.toLowerCase().includes('snitch')) ctx.reply('L\'unione sovietica non riconosce le spie, ma solo i collaboratori della giustizia.', Extra.inReplyTo(ctx.message.message_id));
+			let trigger = ''
+			if (simpsonref.toLowerCase().includes('femmin')) trigger += '\nSembra che tu abbia utilizzato la parola con la F, non farlo in quanto può essere sessista.';
+			if (simpsonref.toLowerCase().includes(' donna') || simpsonref.toLowerCase().includes(' donne'))  trigger += '\nSembra che tu abbia utilizzato la parola con la D, non farlo in quanto può essere sessista.';
+			if (simpsonref.toLowerCase().includes('ragazza') || simpsonref.toLowerCase().includes('ragazze'))  trigger += '\nSembra che tu abbia utilizzato la parola con la R, non farlo in quanto può essere sessista.';
+			if (simpsonref.toLowerCase().includes('negro') || simpsonref.toLowerCase().includes('nigg'))  trigger += '\nSembra che tu abbia utilizzato la parola con la N, non farlo in quanto può essere razzista.';
+			if (simpsonref.toLowerCase().includes('@matteounitn'))  trigger += '\nSembra che tu abbia menzionato @matteounitn, bravo, fallo perchè si vede che qualcosa non va.';
+			if (simpsonref.toLowerCase().includes('snitch'))  trigger += '\nL\'unione sovietica non riconosce le spie, ma solo i collaboratori della giustizia.';
+			if (simpsonref.toLowerCase().includes('unitin'))  trigger += '\nNon nominare quei bastardi che ci rubano i voti.';
+			if (simpsonref.toLowerCase().includes(' udu'))  trigger += '\nSiamo contenti di essere sempre nei vostri cuori ☀️.';
 			let nms = marxify(msg);
 			if (nms.localeCompare(msg) != 0)
-				ctx.reply(nms + '*', Extra.inReplyTo(ctx.message.message_id)); // Inviamo la NOSTRA correzzione
+				ctx.reply(nms + '*' + trigger, Extra.inReplyTo(ctx.message.message_id)); // Inviamo la NOSTRA correzzione
+			else if (trigger != '')
+				ctx.replyWithMarkdown(trigger, Extra.inReplyTo(ctx.message.message_id))
 		} catch (e) { console.log(e) }
 	}
 });
