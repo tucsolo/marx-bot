@@ -38,7 +38,7 @@ bot.on(['message', 'video', 'photo'], (ctx) => {
 	let msg = ctx.message.text || ctx.message.caption;
 	if (msg) {
 		try {
-			let simpsonref = msg.replace(/ /gi, '');
+			let simpsonref = msg;//.replace(/ /gi, '');
 			let trigger = ''
 			if (simpsonref.toLowerCase().includes('femmin')) trigger += '\nSembra che tu abbia utilizzato la parola con la F, non farlo in quanto può essere sessista.';
 			if (simpsonref.toLowerCase().includes(' donna') || simpsonref.toLowerCase().includes(' donne'))  trigger += '\nSembra che tu abbia utilizzato la parola con la D, non farlo in quanto può essere sessista.';
