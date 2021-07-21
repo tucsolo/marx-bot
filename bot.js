@@ -47,7 +47,10 @@ bot.on(['message', 'video', 'photo'], (ctx) => {
 			if (simpsonref.toLowerCase().includes('@matteounitn'))  trigger += '\nSembra che tu abbia menzionato @matteounitn, bravo, fallo perchè si vede che qualcosa non va.';
 			if (simpsonref.toLowerCase().includes('snitch'))  trigger += '\nL\'unione sovietica non riconosce le spie, ma solo i collaboratori della giustizia.';
 			if (simpsonref.toLowerCase().includes('unitin'))  trigger += '\nNon nominare quei bastardi che ci rubano i voti.';
-			if (simpsonref.toLowerCase().includes(' udu'))  trigger += '\nSiamo contenti di essere sempre nei vostri cuori ☀️.';
+			if (simpsonref.toLowerCase().includes(' udu')) trigger += '\nSiamo contenti di essere sempre nei vostri cuori ☀️.';
+			if (simpsonref.toLowerCase().includes('kuper') && Math.random() > 0.7) ctx.reply('Kuper è un affiliato udutrento™️ e potrebbe ricevere una commissione del 30% sull\'acquisto di voti tramite il suo link affiliato.', Extra.inReplyTo(ctx.message.message_id));
+			if (simpsonref.toLowerCase().includes('lol') && Math.random() > 0.8) ctx.reply('Cazzo ridi.', Extra.inReplyTo(ctx.message.message_id));
+			if (simpsonref.toLowerCase().includes('dissocio') && Math.random() > 0.5 && ctx.message.from.username) ctx.reply(`${ctx.message.from.username} approva il messagio e lo condivide con tutto il cuore.`, Extra.inReplyTo(ctx.message.message_id));
 			let nms = marxify(msg);
 			if (nms.localeCompare(msg) != 0)
 				ctx.reply(nms + '*' + trigger, Extra.inReplyTo(ctx.message.message_id)); // Inviamo la NOSTRA correzzione
