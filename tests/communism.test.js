@@ -41,6 +41,10 @@ test('Italian NOSTRE correction', () => {
 	expect(marxify('mie tue sue vostre')).toBe('NOSTRE NOSTRE NOSTRE NOSTRE');
 });
 
+test('Italian correction with punctuation', () => {
+	expect(marxify('mIo? mie! tuE. suE, vostrE...')).toBe('NOSTRO? NOSTRE! NOSTRE. NOSTRE, NOSTRE...');
+});
+
 test('Edgecases', () => {
 	expect(marxify('a?')).toBe('a?');
 	expect(marxify('a? e!')).toBe('a? e!');
