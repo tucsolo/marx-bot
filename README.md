@@ -1,5 +1,5 @@
 # marx-bot
-Bot di Telegram scritto in Node.js che sostisuice gli agettivi possessivi sbagliati (dalla prima alla terza persona signolare) a quelli giusti da vero compagno (prima persona plurale)
+Bot di Telegram scritto in Node.js che sostisuice gli aggettivi possessivi sbagliati (dalla prima alla terza persona signolare) a quelli giusti da vero compagno (prima persona plurale)
 
 eg. abbiamo sempre i miei soldi -> abbiamo sempre i NOSTRI soldi*
 
